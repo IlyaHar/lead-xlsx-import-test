@@ -71,16 +71,10 @@ final class LeadImporter
         $columns = LeadNormalizer::COLUMNS;
         $rowPlaceholder = '(' . implode(',', array_fill(0, count($columns), '?')) . ')';
         $placeholders = implode(',', array_fill(0, count($rows), $rowPlaceholder));
-        $updates = implode(', ', array_map(
-            static fn (string $column): string => "{$column}=new.{$column}",
-            array_slice($columns, 1),
-        ));
-
         $sql = sprintf(
-            'INSERT INTO leads (%s) VALUES %s AS new ON DUPLICATE KEY UPDATE %s, imported_at=CURRENT_TIMESTAMP',
+            'INSERT INTO leads (%s) VALUES %s',
             implode(',', $columns),
             $placeholders,
-            $updates,
         );
 
         $values = [];

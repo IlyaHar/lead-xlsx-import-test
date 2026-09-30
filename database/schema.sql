@@ -17,9 +17,8 @@ CREATE TABLE IF NOT EXISTS leads (
     next_contact_at DATETIME NULL,
     imported_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE KEY leads_external_id_unique (external_id),
+    KEY leads_external_id_index (external_id),
     KEY leads_status_index (status),
     KEY leads_created_at_index (created_at),
     KEY leads_manager_index (manager)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
