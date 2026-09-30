@@ -1,0 +1,6 @@
+.env
+.idea/
+var/*.xlsx
+var/*.tmp
+!var/.gitkeep
+

@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS leads (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    external_id VARCHAR(32) NOT NULL,
+    created_at DATETIME NULL,
+    first_name VARCHAR(100) NULL,
+    last_name VARCHAR(100) NULL,
+    phone VARCHAR(32) NULL,
+    email VARCHAR(254) NULL,
+    city VARCHAR(100) NULL,
+    source VARCHAR(100) NULL,
+    utm_campaign VARCHAR(150) NULL,
+    product VARCHAR(150) NULL,
+    budget_uah DECIMAL(14, 2) NULL,
+    status VARCHAR(32) NULL,
+    manager VARCHAR(100) NULL,
+    comment TEXT NULL,
+    next_contact_at DATETIME NULL,
+    imported_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY leads_external_id_unique (external_id),
+    KEY leads_status_index (status),
+    KEY leads_created_at_index (created_at),
+    KEY leads_manager_index (manager)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
